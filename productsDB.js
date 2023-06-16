@@ -35,36 +35,36 @@ export const getProducts = async () => {
 
 export const updateProduct = async (id, name, description, price, quantity) => {
   try {
-    const query = `UPDATE your_table SET name = ?, description = ?, price = ?, quantity = ? WHERE id = ?`;
+    const query = `UPDATE products SET name = ?, description = ?, price = ?, quantity = ? WHERE id = ?`;
     await connection.query(query, [name, description, price, quantity, id]);
     return {
       statusCode: 200,
       body: "Updated successfully",
     };
   } catch (error) {
-    console.log("Updated failed:", err);
+    console.log("Updated failed:", error);
     return {
       statusCode: 500,
       body: "Updated failed",
-      error: err,
+      error: error,
     };
   }
 };
 
 export const deleteProduct = async (id) => {
   try {
-    const query = `DELETE FROM your_table WHERE id = ?`;
+    const query = `DELETE FROM products WHERE id = ?`;
     await connection.query(query, [id]);
     return {
       statusCode: 200,
       body: "Deleted a product successfully",
     };
   } catch (error) {
-    console.log("Deleted a product failed:", err);
+    console.log("Deleted a product failed:", error);
     return {
       statusCode: 500,
       body: "Deleted a product failed",
-      error: err,
+      error: error,
     };
   }
 };
