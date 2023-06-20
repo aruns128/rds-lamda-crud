@@ -1,5 +1,5 @@
-import { getSecret } from "./getSecrets.js";
 import mysql from "mysql2/promise.js";
+import { getSecret } from "./getSecrets.js";
 
 export const dbConnection = () => {
   return new Promise(async (resolve, reject) => {
@@ -24,8 +24,8 @@ export const dbConnection = () => {
 
       resolve(connection);
     } catch (error) {
-      console.error("[dbConnection]:Error retrieving secrets:", error);
-      reject("[dbConnection]:Error retrieving secrets:", error);
+      console.error("[dbConnection]:connection issue", error);
+      reject("[dbConnection]:connection issue", error);
     }
   });
 };

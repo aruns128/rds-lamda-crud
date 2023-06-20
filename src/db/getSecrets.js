@@ -3,6 +3,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const aws_region = process.env.AWSregion;
+
+AWS.config.update({
+  region: aws_region,
+});
+
 export const getSecret = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -11,6 +17,7 @@ export const getSecret = () => {
       const secret = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
       const secretString = secret.SecretString;
       const secretData = JSON.parse(secretString);
+      console.log(secretData);
       resolve(secretData);
     } catch (error) {
       console.log("[getSecret]:error", error);
